@@ -7,6 +7,23 @@ public class AppManager : MonoBehaviour
     [SerializeField] private ARSession arSession;
     [SerializeField] private UIStateManager uIStateManager;
 
+    [Header("Other References")]
+    [SerializeField] private GameObject quitModal;
+    [SerializeField] private Animator quitModalAnimator;
+
+    public void OpenQuitModal()
+    {
+        Debug.Log("Open Quit Modal");
+        quitModal.SetActive(true);
+        quitModalAnimator.SetBool("IsOpen", true);
+    }
+
+    public void CloseQuitModal()
+    {
+        quitModal.SetActive(false);
+        quitModalAnimator.SetBool("IsOpen", false);
+    }
+
     public void QuitApplication()
     {
         Application.Quit();

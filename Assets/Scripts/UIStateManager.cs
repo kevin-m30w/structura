@@ -8,6 +8,10 @@ public class UIStateManager : MonoBehaviour
     [SerializeField] private GameObject scanningPanel;
     [SerializeField] private GameObject filteringPanel;
 
+    [Header("UI State Animators")]
+    [SerializeField] private Animator scanningAnimator;
+    [SerializeField] private Animator filteringAnimator;
+
     private AppState currentState;
 
     void Start()
@@ -22,6 +26,15 @@ public class UIStateManager : MonoBehaviour
         scanningPanel.SetActive(currentState == AppState.Scanning);
         filteringPanel.SetActive(currentState == AppState.BuildingPlaced);
 
+        if (scanningAnimator != null)
+        {
+            scanningAnimator.SetBool("IsOpen", currentState == AppState.Scanning);
+        }
+
+        if (filteringAnimator != null)
+        {
+            filteringAnimator.SetBool("IsOpen", currentState == AppState.BuildingPlaced);
+        }
         //if (currentState == AppState.BuildingPlaced)
         //{
         //    ShowAll();
